@@ -17,19 +17,19 @@ using namespace std;
 template <class T> 
 class Set
 {
-public:
-			Set		( void );
-			Set		( const Set<T> &myset );
-		   ~Set		( void );
-Set<T>		operator=	( const Set<T> &myset );
-string		to_string	( void ) const;	
+public:												// (need to create "contains", <= operator, & operator, and - operator)
+			Set		( void );							// KEEP
+			Set		( const Set<T> &myset );				// KEEP
+		   ~Set		( void );							// KEEP
+Set<T>		operator=	( const Set<T> &myset );				// KEEP (need to create s.contains(x) and s <= t from this???)
+string		to_string	( void ) const;					// KEEP
 void		append		( const T &item	);
 T &			operator[]	( int index );
-void		insert		( const T &item, int index );
-void		remove		( int index );
-Set<T>		operator+	( const Set<T> &myset ) const;
-int			length		( void ) const;
-bool		isEmpty		( void ) const;
+void		insert		( const T &item, int index );			// KEEP
+void		remove		( int index );						// KEEP
+Set<T>		operator+	( const Set<T> &myset ) const;		// KEEP
+int			length		( void ) const;				// KEEP rename to s.cardinality()
+bool		isEmpty		( void ) const;					// KEEP rename to s.empty()
 void		clear		( void );
 
 friend ostream & operator<< ( ostream &os, Set<T> &myset )
