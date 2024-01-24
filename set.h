@@ -18,21 +18,21 @@ template <class T>
 class Set{
 public:													// (need to create "contains", <= operator, & operator, and - operator)
 	Set(void);											// KEEP (creates Set Object)
-	Set(const Set<T> &myset);							// KEEP (copies the set)
+	Set(const Set<T> &myset);									// KEEP (copies the set)
 	~Set(void);											// KEEP (Deletes the set)
-	Set<T> operator=(const Set<T> &myset);				// KEEP  
-	string toString(void) const;						// KEEP (returns set as a string {1, 2, 3})
-	void append	(const T &item);						// KEEP (adds value into the set)
+	Set<T> operator=(const Set<T> &myset);								// KEEP  
+	string toString(void) const;									// KEEP (returns set as a string {1, 2, 3})
+	void append	(const T &item);								// KEEP (adds value into the set)
 	T &	operator[](int index);
-	void insert(const T &item, int index);				// KEEP (inserts element into index)
-	void remove(int index);								// KEEP (removes element from set)
-	Set<T> operator+(const Set<T> &myset) const;		// KEEP (Adds 2 sets together) !NO DUPLICATES
-	int	cardinality(void) const;						// KEEP (returns the length of the set)
-	bool empty(void) const;								// KEEP (returns T/F if set is empty)
-	void clear(void);									// KEEP (removes all values in set)
-	bool contains(void) const;							// KEEP (returns T/F if its in set)
+	void insert(const T &item, int index);								// KEEP (inserts element into index)
+	void remove(int index);										// KEEP (removes element from set)
+	Set<T> operator+(const Set<T> &myset) const;							// KEEP (Adds 2 sets together) !NO DUPLICATES
+	int	cardinality(void) const;								// KEEP (returns the length of the set)
+	bool empty(void) const;										// KEEP (returns T/F if set is empty)
+	void clear(void);										// KEEP (removes all values in set)
+	bool contains(void) const;									// KEEP (returns T/F if its in set)
 
-	bool operator<=(const Set<T> &myset) const;         // How would this work logically --> s <= t from this???)
+	bool operator<=(const Set<T> &myset) const;         						// How would this work logically --> s <= t from this???)
 
 	friend ostream & operator<< ( ostream &os, Set<T> &myset )
 	{
@@ -43,7 +43,7 @@ public:													// (need to create "contains", <= operator, & operator, and 
 
 private:
 	T	*Set;			// the pointer for the dynamic set
-	int capacity;		// the size of the set
+	int capacity;			// the size of the set
 	int size;			// the number of items in the set
 
 	void reallocate(void);
