@@ -23,8 +23,8 @@ public:													// (need to create "contains", <= operator, & operator, and 
 	Set<T> operator=(const Set<T> &myset);								// KEEP  
 	string toString(void) const;									// KEEP (returns set as a string {1, 2, 3})
 	void append(const T &item);								// KEEP (adds value into the set)
-	T & operator[](int index);
-	void insert(const T &item, int index);								// KEEP (inserts element into index)
+	T & operator[](int index);							// DELETE
+	void insert(const T &item, int index);						// KEEP (inserts element into index)
 	void remove(int index);										// KEEP (removes element from set)
 	Set<T> operator+(const Set<T> &myset) const;							// KEEP (Adds 2 sets together) !NO DUPLICATES
 	int cardinality(void) const;									// KEEP (returns the length of the set)
@@ -32,7 +32,20 @@ public:													// (need to create "contains", <= operator, & operator, and 
 	void clear(void);										// KEEP (removes all values in set)
 	bool contains(void) const;									// KEEP (returns T/F if its in set)
 
+
+	// NEW FUNCTIONS
 	bool operator<=(const Set<T> &myset) const;         						// How would this work logically --> s <= t from this???)
+	
+	// contains
+	
+	// operator==
+	
+	// operator<=
+	
+	// operator&
+	
+	// operator-
+	
 
 	friend ostream & operator<< ( ostream &os, Set<T> &myset )
 	{

@@ -224,3 +224,140 @@ template <class T>
 bool Set<T>::operator<=(const Set<T> &mySet){
     // im stuck here
 }
+
+
+
+
+// LQ ADDED FUNCTIONS
+
+//=========================================================================
+// insert
+// Parameters: item of type T to be inserted into list
+//			int index, index where item is to be inserted
+// Returns: none, but inserts new item into list at parameter index 
+// Inserts item into list at parameter index, shifting all following items
+// by one index
+//=========================================================================
+
+template <class T> 
+void		List<T>::insert		( const T &item, int index )
+{
+	if (index < 0 || index > size)
+	{
+		cout << "error: index out of range\n";
+		exit(0);
+	}
+	
+	if (size == capacity)
+		reallocate();
+
+	size = size + 1;
+
+	T* newptr;
+	newptr = new T[capacity];
+
+	for (int i = 0; i < index; i++)
+		newptr[i] = list[i];
+
+	newptr[index] = item;
+
+	for (int i = index; i < (size - 1); i++)
+		newptr[i + 1] = list[i];
+	
+	delete []list;
+	list = newptr;
+}
+
+
+//=========================================================================
+// remove
+// Parameters: int index, index where item is to be inserted
+// Returns: none, but removes item at parameter index 
+// Removes item from list at parameter index, shrinks list size by 1
+//=========================================================================
+
+template <class T> 
+void		List<T>::remove		( int index )
+{
+	if (index < 0 || index > size)
+	{
+		cout << "error: index out of range\n";
+		exit(0);
+	}
+
+	size = size - 1;
+	
+	T* newptr;
+	newptr = new T[capacity];
+	
+	for (int i = 0; i < index; i++)
+		newptr[i] = list[i];
+
+	for (int i = (index); i < (size); i++)
+		newptr[i] = list[i + 1];
+	
+	delete []list;
+	list = newptr;	
+}
+
+
+//=========================================================================
+// contains
+// Parameters:
+// Returns:
+//
+//=========================================================================
+
+template <class T> 
+
+
+//=========================================================================
+// operator==
+// Parameters:
+// Returns:
+//
+//=========================================================================
+
+template <class T> 
+
+
+//=========================================================================
+// operator<=
+// Parameters:
+// Returns:
+//
+//=========================================================================
+
+template <class T> 
+
+
+//=========================================================================
+// operator&
+// Parameters:
+// Returns:
+//
+//=========================================================================
+
+template <class T> 
+
+
+//=========================================================================
+// operator-
+// Parameters:
+// Returns:
+//
+//=========================================================================
+
+template <class T> 
+
+
+
+
+
+
+
+
+
+
+
+
