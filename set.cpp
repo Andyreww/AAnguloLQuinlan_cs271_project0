@@ -49,6 +49,7 @@ string		Set<T>::to_string	( void ) const
 	return "{" + stream.str() + "}";
 }
 
+
 template <class T> 
 void		Set<T>::append		( const T &item	)
 {
@@ -57,6 +58,7 @@ void		Set<T>::append		( const T &item	)
 	list[size] = item;
 	size++;
 }
+
 
 template <class T> 
 void		Set<T>::reallocate		( void )
@@ -139,6 +141,24 @@ void		Set<T>::clear		( void )
 	delete []list;
 	list = newptr;	
 }
+/*
+template <class T> 
+Set<T>		Set<T>::operator+	( const Set<T> &mylist ) const
+{
+	Set<T> newlist;
+	newlist.list = new T[capacity + mylist.capacity];
+	newlist.size = size + mylist.size;
+	newlist.capacity = capacity + mylist.capacity;
+
+	for (int i = 0; i < size; i++)
+		newlist.list[i] = list[i];
+	
+	for (int i = (0); i < (mylist.size); i++)
+		newlist.list[size + i] = mylist.list[i];
+	
+	return newlist;
+}
+*/
 
 template <class T>
 Set<T>      Set<T>::operator+   ( const Set<T> &mylist ) const
@@ -164,6 +184,7 @@ Set<T>      Set<T>::operator+   ( const Set<T> &mylist ) const
                 break;
             }
         }
+
         if(!isDupe)
         {
             newlist.list[newlist.size] = mylist.list[i];
@@ -229,21 +250,48 @@ void		Set<T>::remove		( int index )
 	list = newptr;	
 }
 
-template <class T> 
-Set<T>      Set<T>::operator==   ( const Set<T> &mylist ) const
-{
-    int counter = 0;
-    int counter2 = 0;
-    for(int i = 0; i<size; i++)
-    {
-        counter = list[i];
-        counter2 = mylist[i];
 
-        if(counter == counter2 & i == size) cout << "They are equal" << endl;
-        else cout << "They are not equal" << endl;
-    }
-    
+template <class T> 
+bool		Set<T>::contains		( const T &item )
+{
+	bool ret = false; 
+	
+	T* newptr;
+	newptr = new T[capacity];
+	
+	//cout << newptr << endl;
+	
+	for (int i = 0; i < size+1; i++)
+	{
+		newptr[i] = list[i];
+		//cout << "IN LOOP ";
+		//cout << newptr[i] << endl;
+		if (newptr[i]==item) 
+		{
+			return true; 
+		}
+	}
+
+	return false;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
