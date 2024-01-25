@@ -231,7 +231,7 @@ void		Set<T>::remove		( int index )
 
 
 template <class T> 
-bool		Set<T>::contains		( const T &item )
+bool		Set<T>::contains		( const T &item ) const
 {
 	bool ret = false; 
 	
@@ -244,7 +244,7 @@ bool		Set<T>::contains		( const T &item )
 	{
 		newptr[i] = list[i];
 		//cout << "IN LOOP ";
-		//cout << newptr[i] << endl;
+		//cout << newptr[i] << endl
 		if (newptr[i]==item) 
 		{
 			return true; 
@@ -255,31 +255,30 @@ bool		Set<T>::contains		( const T &item )
 }
 
 template <class T> 
-Set<T>     Set<T>::operator==   ( const Set<T> &mylist ) const
+bool     Set<T>::operator==   ( const Set<T> &mylist ) const
 {
-    
+
     if(size != mylist.size)
     {
-        cout << "They aren't equal" << endl;
-        break;
+        return false;
     }
 
     else
     {
         for(int i = 0; i<size; i++)
         {
-            if(list.contains(mylist[i]) == false)
+            if(contains(mylist.list[i]) == false)
             {
-                cout << "They aren't equal" << endl;
-                break;
+                return false;
             }
             else
             {
-                cout << "They are equal" << endl;
-                break;
+                return true;
             }
         }
     
     }
+    
+    return false;
 }
 

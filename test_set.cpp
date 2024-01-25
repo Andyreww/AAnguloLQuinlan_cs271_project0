@@ -82,6 +82,38 @@ int main ( void )
 	Set10.insert(50,19);
 	cout << "Set10 = " << Set10.to_string() << endl;
 
+
+
+	Set<int> Set11;
+	Set11.append(12);
+	Set11.append(13);
+	Set11.append(14);
+	Set11.remove(1);
+
+	cout << "Contains: " << Set11.contains(14) << endl;
+	//Set11.append(14);
+	cout << "Set 11:" << Set11.to_string() << endl;
+
+
+	Set<int> Set12;
+	Set<int> Set13;
+
+	Set12.append(12);
+
+
+	Set13.append(12);
+
+
+
+	if(Set12 == Set13)
+	{
+		cout << "The sets are equivalent" << endl;
+	}
+	else
+	{
+		cout << "They aren't" << endl;
+	}
+
 	return 0;
 }
 
