@@ -44,6 +44,8 @@ int main ( void )
 		cout << "Set 3 not empty\n";
 
 	cout << "\nSet 3= Set1+Set2\n";
+	cout << "Set 1:" << Set1.to_string() << endl;
+	cout << "Set 2:" << Set2.to_string() << endl;
 	Set3 = Set1 + Set2; //Fix with the other function
 	cout << "Set 3 = " << Set3.to_string() << endl;
 

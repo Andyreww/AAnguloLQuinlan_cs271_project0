@@ -126,7 +126,7 @@ void		Set<T>::clear		( void )
 	delete []list;
 	list = newptr;	
 }
-
+/*
 template <class T> 
 Set<T>		Set<T>::operator+	( const Set<T> &mylist ) const
 {
@@ -143,26 +143,27 @@ Set<T>		Set<T>::operator+	( const Set<T> &mylist ) const
 	
 	return newlist;
 }
+*/
 
-/*
 template <class T>
-Set<T> Set<T>::operator+(const Set<T> &mySet){
-    Set<T> newSet;
-    newSet.Set = new T[capacity + mySet.capacity];
-    newSet.capacity = capacity + mySet.capacity;
+Set<T>      Set<T>::operator+   ( const Set<T> &mylist ) const
+{
+    Set<T> newlist;
+    newlist.list = new T[capacity + mylist.capacity];
+    newlist.capacity = capacity + mylist.capacity;
 
     // copying elements from the first Set
-    for(int i = 0; i < size; i++) newSet.Set[i] = Set[i];
+    for(int i = 0; i < size; i++) newlist.list[i] = list[i];
 
-    newSet.size = size;
+    newlist.size = size;
 
     // copying the second Set but checking for dupes
-    for(int i = 0; i < mySet.size; i++)
+    for(int i = 0; i < mylist.size; i++)
     {
         bool isDupe = false;
-        for(int j = 0; j < newSet.size; j++)
+        for(int j = 0; j < newlist.size; j++)
         {
-            if(newSet.Set[j] == mySet.Set[i])
+            if(newlist.list[j] == mylist.list[i])
             {
                 isDupe = true;
                 break;
@@ -170,14 +171,14 @@ Set<T> Set<T>::operator+(const Set<T> &mySet){
         }
         if(!isDupe)
         {
-            newSet.Set[newSet.size] = mySet.Set[i];
-            newSet.size++;
+            newlist.list[newlist.size] = mylist.list[i];
+            newlist.size++;
         }
     }
-    return newSet;
+    return newlist;
         
 }
-*/
+
 
 template <class T> 
 void		Set<T>::insert		( const T &item, int index )
