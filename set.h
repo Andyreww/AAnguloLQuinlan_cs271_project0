@@ -31,6 +31,7 @@ Set<T>		operator+	( const Set<T> &mylist ) const;
 int			length		( void ) const;
 bool		isEmpty		( void ) const;
 void		clear		( void );
+bool		contains		( const T &item	);
 
 friend ostream & operator<< ( ostream &os, Set<T> &mylist )
 {
