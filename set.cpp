@@ -29,13 +29,28 @@ template <class T>
 string		Set<T>::to_string	( void ) const
 {
 	stringstream stream;
+    int i = 0;
+    while(i < size-1)
+    {
+        i++;
+        stream << list[i] << ", ";
+    }
+    stream << list[size];
+
+	return "{" + stream.str() + "}";
+}
+/*
+template <class T> 
+string		Set<T>::to_string	( void ) const
+{
+	stringstream stream;
 
 	for (int i = 0; i < size; i++)
 		stream << list[i] << ", ";
 
-	return "{"+stream.str()+"}";
+	return "{" + stream.str() + "}";
 }
-
+*/
 template <class T> 
 void		Set<T>::append		( const T &item	)
 {
