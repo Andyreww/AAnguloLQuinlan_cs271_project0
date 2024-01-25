@@ -282,3 +282,24 @@ bool     Set<T>::operator==   ( const Set<T> &mylist ) const
     return false;
 }
 
+template <class T>
+bool     Set<T>::operator<=   ( const Set<T> &mylist ) const
+{
+    int trueCounter = 0;
+    if(size == 0) return false;
+    for(int i = 0; i < size; i++)
+    {
+        //cout << "outer if statement index:" << list[i] << endl;
+        for(int j = 0; j<mylist.size; j++)
+        {
+            if(list[i] == mylist.list[j]) trueCounter++;
+        }
+        
+    }
+    if(trueCounter == size) return true;
+    cout << "trueCounter: " << trueCounter << endl;
+    cout << "Size: " << size << endl;
+    //if(trueCounter == size) return true;
+    return false;
+}
+
