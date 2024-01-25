@@ -33,7 +33,9 @@ int			length		( void ) const;
 bool		isEmpty		( void ) const;
 void		clear		( void );
 bool		contains		( const T &item	) const;
-bool     operator<=  (const Set<T> &mylist ) const;
+Set<T>	operator&		( const Set<T> &mylist ) const; 
+Set<T>	operator- 	( const Set<T> &mylist ) const;
+bool 	operator<= 	( const Set<T> &mylist ) const;
 
 friend ostream & operator<< ( ostream &os, Set<T> &mylist )
 {

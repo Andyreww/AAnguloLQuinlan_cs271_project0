@@ -205,6 +205,7 @@ void		Set<T>::insert		( const T &item, int index )
 }
 
 
+
 template <class T> 
 void		Set<T>::remove		( int index )
 {
@@ -232,19 +233,13 @@ void		Set<T>::remove		( int index )
 
 template <class T> 
 bool		Set<T>::contains		( const T &item ) const
-{
-	bool ret = false; 
-	
+{	
 	T* newptr;
 	newptr = new T[capacity];
-	
-	//cout << newptr << endl;
-	
+		
 	for (int i = 0; i < size+1; i++)
 	{
 		newptr[i] = list[i];
-		//cout << "IN LOOP ";
-		//cout << newptr[i] << endl
 		if (newptr[i]==item) 
 		{
 			return true; 
@@ -282,6 +277,43 @@ bool     Set<T>::operator==   ( const Set<T> &mylist ) const
     return false;
 }
 
+
+template <class T>
+Set<T>	Set<T>::operator&		( const Set<T> &mylist ) const
+{
+	Set<T> newlist;
+	newlist.list = new T[capacity + mylist.capacity];
+	newlist.capacity = capacity + mylist.capacity;
+
+	for(int i = 0; i<size; i++)
+	{
+		if(mylist.contains(list[i]))
+		{
+			newlist.append(list[i]);
+		}
+	}
+	return newlist;
+}
+
+
+template <class T>
+Set<T>	Set<T>::operator- 	( const Set<T> &mylist ) const
+{
+	Set<T> newlist;
+	newlist.list = new T[capacity + mylist.capacity];
+	newlist.capacity = capacity + mylist.capacity;
+	
+	for(int i = 0; i<size; i++)
+	{
+		if(!mylist.contains(list[i]))
+		{
+			newlist.append(list[i]);
+		}
+	}
+	return newlist;
+}
+
+
 template <class T>
 bool     Set<T>::operator<=   ( const Set<T> &mylist ) const
 {
@@ -302,4 +334,9 @@ bool     Set<T>::operator<=   ( const Set<T> &mylist ) const
     //if(trueCounter == size) return true;
     return false;
 }
+
+
+
+
+
 
