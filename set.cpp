@@ -28,29 +28,27 @@ template <class T>
 template <class T> 
 string		Set<T>::to_string	( void ) const
 {
-	stringstream stream;
-    int i = 0;
-    while(i < size-1)
+    stringstream stream;
+    if(size == 1) //Solves the case if Set only has 1 value
     {
-        i++;
-        stream << list[i] << ", ";
+        stream << list[0];
+        return "{" + stream.str() + "}";
     }
-    stream << list[size];
+    else
+    {
+        int i = 0;
+        while(i < size-1) // copies until last index
+        {
+            stream << list[i] << ", ";
+            i++;
+        }
+        stream << list[size-1]; // adds last index
+    } 
+    
 
 	return "{" + stream.str() + "}";
 }
-/*
-template <class T> 
-string		Set<T>::to_string	( void ) const
-{
-	stringstream stream;
 
-	for (int i = 0; i < size; i++)
-		stream << list[i] << ", ";
-
-	return "{" + stream.str() + "}";
-}
-*/
 template <class T> 
 void		Set<T>::append		( const T &item	)
 {
@@ -141,24 +139,6 @@ void		Set<T>::clear		( void )
 	delete []list;
 	list = newptr;	
 }
-/*
-template <class T> 
-Set<T>		Set<T>::operator+	( const Set<T> &mylist ) const
-{
-	Set<T> newlist;
-	newlist.list = new T[capacity + mylist.capacity];
-	newlist.size = size + mylist.size;
-	newlist.capacity = capacity + mylist.capacity;
-
-	for (int i = 0; i < size; i++)
-		newlist.list[i] = list[i];
-	
-	for (int i = (0); i < (mylist.size); i++)
-		newlist.list[size + i] = mylist.list[i];
-	
-	return newlist;
-}
-*/
 
 template <class T>
 Set<T>      Set<T>::operator+   ( const Set<T> &mylist ) const
@@ -247,6 +227,22 @@ void		Set<T>::remove		( int index )
 	
 	delete []list;
 	list = newptr;	
+}
+
+template <class T> 
+Set<T>      Set<T>::operator==   ( const Set<T> &mylist ) const
+{
+    int counter = 0;
+    int counter2 = 0;
+    for(int i = 0; i<size; i++)
+    {
+        counter = list[i];
+        counter2 = mylist[i];
+
+        if(counter == counter2 & i == size) cout << "They are equal" << endl;
+        else cout << "They are not equal" << endl;
+    }
+    
 }
 
 
