@@ -11,174 +11,140 @@
 #include <iostream>
 #include <sstream>
 
-/**
- * @brief Default constructor for Set.
- *
- * Creates an empty Set object with capacity 10.
- *
- * @note No parameters are required for this constructor.
- *
- * @returns None.
- */
- template <class T> 
- Set<T>::Set(void){
-    Set = new T[DEFAULT_SET_CAPACITY]; //Set Size is 10
-    capacity = DEFAULT_SET_CAPACITY;
-    size = 0;
+template <class T> 
+		Set<T>::Set	( void )
+{
+	list = new T[DEFAULT_LIST_CAPACITY];
+	capacity = DEFAULT_LIST_CAPACITY;
+	size = 0;
 }
 
-/**
- * @brief Destructor for Set.
- *
- * Completely deletes the Set for existence.
- *
- * @note No parameters are required.
- *
- * @returns None.
- */
-template <class T>
-Set<T>::~Set(void){
-    delete []Set;
+template <class T> 
+		Set<T>::~Set(void)
+{
+	delete []list;
 }
 
-/**
- * @brief Set --> toString
- *
- * converts the Set into a readable string
- * ex: {1, 2, 3, 4}
- *
- * @note No parameters are required.
- *
- * @returns string of the set.
- */
-template <class T>
-string Set<T>::toString(void) const{
-    stringstream stream;
+template <class T> 
+string		Set<T>::to_string	( void ) const
+{
+	stringstream stream;
 
-    for(int i = 0; i < size; i++){
-        stream << Set[i] << ", ";
-    }
+	for (int i = 0; i < size; i++)
+		stream << list[i] << ", ";
 
-    return "{" + stream.str() + "}";
+	return "{"+stream.str()+"}";
 }
 
-/**
- * @brief appends values
- *
- * appends item of type T to the Set
- *
- * @param T item to be appended to the Set
- *
- * @returns none.
- */
-template <class T>
-void Set<T>::append(const T &item){
-    if(size == capacity) reallocate();
-    Set[size] = item;
-    size++;
+template <class T> 
+void		Set<T>::append		( const T &item	)
+{
+	if (size == capacity)
+		reallocate();
+	list[size] = item;
+	size++;
 }
 
-/**
- * @brief reallocates set
- *
- * creates new Set object of twice the capacity
- *
- * @note No parameters are required.
- *
- * @returns none.
- */
-template <class T>
-void Set<T>::reallocate(void){
-    capacity *= 2;
-
-    T* newptr;
-    newptr = new T[capacity];
-
-    for(int i = 0; i<size; i++) newptr[i] = Set[i];
-
-    delete Set;
-
-    Set = newptr;
+template <class T> 
+void		Set<T>::reallocate		( void )
+{
+	capacity = capacity * 2;
+	
+	T* newptr;
+	newptr = new T[capacity];
+	
+	for (int i = 0; i < size; i++)
+		newptr[i] = list[i];
+	
+	delete list;
+	list = newptr;
 }
 
-/**
- * @brief Empty
- *
- * returns T/F if the Set is empty or not
- *
- * @note No parameters are required.
- *
- * @returns boolean.
- */
-template <class T>
-bool Set<T>::empty(void) const{
-    return (size == 0);
+
+template <class T> 
+		Set<T>::Set		( const Set<T> &mylist )
+{
+	size = mylist.size;
+	capacity = mylist.capacity;
+	list = new T[mylist.capacity];
+	
+	for (int i = 0; i < size; i++)
+		list[i] = mylist.list[i];
 }
 
-/**
- * @brief Cardinality
- *
- * returns the length of a Set
- *
- * @note No parameters are required.
- *
- * @returns int.
- */
-template <class T>
-bool Set<T>::cardinality(void) const{
-    return size;
+template <class T> 
+Set<T>		Set<T>::operator=	( const Set<T> &mylist )
+{
+	delete []list;
+
+	size = mylist.size;
+	capacity = mylist.capacity;
+	list = new T[mylist.capacity];
+	
+	for (int i = 0; i < size; i++)
+		list[i] = mylist.list[i];
+
+	return *this;
 }
 
-/**
- * @brief clear
- *
- * Removes all items from the Set object
- *
- * @note No paramters are required.
- *
- * @returns none
- */
-template <class T>
-void Set<T>::clear(void){
-    size = 0;
-    T* newptr;
-    newptr = new T[capacity];
 
-    delete []Set;
-    Set = newptr;
+template <class T> 
+bool		Set<T>::isEmpty		( void ) const
+{
+	return (size == 0);
 }
 
-/**
- * @brief operator=
- *
- * creates new Set object which like terms
- *
- * @param mySet a Set object
- *
- * @returns Set object.
- */
-template <class T>
-Set<T> Set<T>::operator=(const Set<T> &mySet){
-    delete []Set;
 
-    size = mySet.size;
-    capacity = mySet.capacity;
-    Set = new T[mySet.capacity];
-
-    for(int i = 0; i < size; i++) Set[i] = mySet.Set[i];
-
-    return *this;
+template <class T> 
+int			Set<T>::length		( void ) const
+{
+	return size;
 }
 
-/**
- * @brief operator+
- *
- * adds 2 sets together, doesn't contain duplicates, Plus = Union
- *
- * @param mySet a Set object
- *
- * @returns Set object.
- */
+template <class T> 
+T &			Set<T>::operator[]	( int index )
+{
+	if (index < 0 || index > (size - 1))
+	{
+		cout << "error: index out of range\n";
+		exit(0);
+	}
+		
+	T* retptr;
+	retptr = &list[index];
+	return *retptr;
+}
+
+template <class T> 
+void		Set<T>::clear		( void )
+{
+	size = 0;
+	
+	T* newptr;
+	newptr = new T[capacity];
+
+	delete []list;
+	list = newptr;	
+}
+
+template <class T> 
+Set<T>		Set<T>::operator+	( const Set<T> &mylist ) const
+{
+	Set<T> newlist;
+	newlist.list = new T[capacity + mylist.capacity];
+	newlist.size = size + mylist.size;
+	newlist.capacity = capacity + mylist.capacity;
+
+	for (int i = 0; i < size; i++)
+		newlist.list[i] = list[i];
+	
+	for (int i = (0); i < (mylist.size); i++)
+		newlist.list[size + i] = mylist.list[i];
+	
+	return newlist;
+}
+
+/*
 template <class T>
 Set<T> Set<T>::operator+(const Set<T> &mySet){
     Set<T> newSet;
@@ -211,37 +177,10 @@ Set<T> Set<T>::operator+(const Set<T> &mySet){
     return newSet;
         
 }
+*/
 
-/**
- * @brief operator<=
- *
- * Logically idk
- *
- * @param mySet a Set object
- *
- * @returns boolean.
- */
-template <class T>
-bool Set<T>::operator<=(const Set<T> &mySet){
-    // im stuck here
-}
-
-
-
-
-// LQ ADDED FUNCTIONS
-
-//=========================================================================
-// insert
-// Parameters: item of type T to be inserted into list
-//			int index, index where item is to be inserted
-// Returns: none, but inserts new item into list at parameter index 
-// Inserts item into list at parameter index, shifting all following items
-// by one index
-//=========================================================================
-/*
 template <class T> 
-void		List<T>::insert		( const T &item, int index )
+void		Set<T>::insert		( const T &item, int index )
 {
 	if (index < 0 || index > size)
 	{
@@ -268,17 +207,10 @@ void		List<T>::insert		( const T &item, int index )
 	delete []list;
 	list = newptr;
 }
-*/
 
-//=========================================================================
-// remove
-// Parameters: int index, index where item is to be inserted
-// Returns: none, but removes item at parameter index 
-// Removes item from list at parameter index, shrinks list size by 1
-//=========================================================================
-/*
+
 template <class T> 
-void		List<T>::remove		( int index )
+void		Set<T>::remove		( int index )
 {
 	if (index < 0 || index > size)
 	{
@@ -300,63 +232,6 @@ void		List<T>::remove		( int index )
 	delete []list;
 	list = newptr;	
 }
-*/
-
-//=========================================================================
-// contains
-// Parameters:
-// Returns:
-//
-//=========================================================================
-
-//template <class T> 
-
-
-//=========================================================================
-// operator==
-// Parameters:
-// Returns:
-//
-//=========================================================================
-
-//template <class T> 
-
-
-//=========================================================================
-// operator<=
-// Parameters:
-// Returns:
-//
-//=========================================================================
-
-//template <class T> 
-
-
-//=========================================================================
-// operator&
-// Parameters:
-// Returns:
-//
-//=========================================================================
-
-//template <class T> 
-
-
-//=========================================================================
-// operator-
-// Parameters:
-// Returns:
-//
-//=========================================================================
-
-//template <class T> 
-
-
-
-
-
-
-
 
 
 
