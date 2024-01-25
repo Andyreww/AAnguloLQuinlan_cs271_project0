@@ -49,7 +49,6 @@ string		Set<T>::to_string	( void ) const
 	return "{" + stream.str() + "}";
 }
 
-
 template <class T> 
 void		Set<T>::append		( const T &item	)
 {
@@ -58,7 +57,6 @@ void		Set<T>::append		( const T &item	)
 	list[size] = item;
 	size++;
 }
-
 
 template <class T> 
 void		Set<T>::reallocate		( void )
@@ -141,24 +139,6 @@ void		Set<T>::clear		( void )
 	delete []list;
 	list = newptr;	
 }
-/*
-template <class T> 
-Set<T>		Set<T>::operator+	( const Set<T> &mylist ) const
-{
-	Set<T> newlist;
-	newlist.list = new T[capacity + mylist.capacity];
-	newlist.size = size + mylist.size;
-	newlist.capacity = capacity + mylist.capacity;
-
-	for (int i = 0; i < size; i++)
-		newlist.list[i] = list[i];
-	
-	for (int i = (0); i < (mylist.size); i++)
-		newlist.list[size + i] = mylist.list[i];
-	
-	return newlist;
-}
-*/
 
 template <class T>
 Set<T>      Set<T>::operator+   ( const Set<T> &mylist ) const
@@ -184,7 +164,6 @@ Set<T>      Set<T>::operator+   ( const Set<T> &mylist ) const
                 break;
             }
         }
-
         if(!isDupe)
         {
             newlist.list[newlist.size] = mylist.list[i];
@@ -275,25 +254,32 @@ bool		Set<T>::contains		( const T &item )
 	return false;
 }
 
+template <class T> 
+Set<T>     Set<T>::operator==   ( const Set<T> &mylist ) const
+{
+    
+    if(size != mylist.size)
+    {
+        cout << "They aren't equal" << endl;
+        break;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    else
+    {
+        for(int i = 0; i<size; i++)
+        {
+            if(list.contains(mylist[i]) == false)
+            {
+                cout << "They aren't equal" << endl;
+                break;
+            }
+            else
+            {
+                cout << "They are equal" << endl;
+                break;
+            }
+        }
+    
+    }
+}
 
