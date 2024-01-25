@@ -11,73 +11,74 @@
 int main ( void )
 {
 
-/*
-	List<int> 	list1;
-	cout << "list1 = " << list1.to_string() << endl;
-	
-	for ( int i = 1; i <= 10; i++ )
-		list1.append(i);
 
-	cout << "list1 = " << list1.to_string() << endl;
+	Set<int> 	Set1;
+	
+	for (int i = 1; i <= 10; i++ )
+		Set1.append(i);
 
-	List<int> list2(list1);
-	cout << "list2 = " << list2.to_string() << endl;
+	cout << "Set 1 = " << Set1.to_string() << endl;
+
+	Set<int> Set2(Set1);
+	cout << "Set 2 = " << Set2.to_string() << endl;
+
+	cout << "\nSet1.insert(50,10);\nSet1.insert(0,0)\n";
+	cout << "Set1.remove(1);\n"; 
+
+
+	Set2[2] = 100;
+	Set1.insert(50,10);
+	Set1.insert(0,0);
+	Set1.remove(1);
+	cout << "Set2 = " << Set2.to_string() << endl;
+	cout << "Set1 = " << Set1.to_string() << endl;
+
+
 	
-	cout << "\nlist1.insert(50,10);\nlist1.insert(0,0)\n";
-	cout << "list1.remove(1);\n"; 
-	list2[2] = 100;
-	list1.insert(50,10);
-	list1.insert(0,0);
-	list1.remove(1);
-	cout << "list2 = " << list2.to_string() << endl;
-	cout << "list1 = " << list1.to_string() << endl;
-	
-	cout << "\nlist3 new empty\n";
-	List<int> list3;
-	cout << "list3 size = " << list3.length() << endl;
-	if ( list3.isEmpty() )
-		cout << "list3 empty\n";
+	cout << "\nSet 3 new empty\n";
+	Set<int> Set3;
+	cout << "Set 3 size = " << Set3.length() << endl;
+	if ( Set3.isEmpty() )
+		cout << "Set 3 empty\n";
 	else
-		cout << "list3 not empty\n";
+		cout << "Set 3 not empty\n";
 
-	cout << "\nlist3 = list1+list2\n";
-	list3 = list1 + list2;
-	cout << "list3 = " << list3.to_string() << endl;
-	
-	
-	cout << "list3 size = " << list3.length() << endl;
-	if ( list3.isEmpty() )
-		cout << "list3 empty\n";
+	cout << "\nSet 3= Set1+Set2\n";
+	Set3 = Set1 + Set2; //Fix with the other function
+	cout << "Set 3 = " << Set3.to_string() << endl;
+
+
+	cout << "Set3 size = " << Set3.length() << endl;
+	if ( Set3.isEmpty() )
+		cout << "Set3 empty\n";
 	else
-		cout << "list3 not empty\n";
+		cout << "Set3 not empty\n";
 
-	cout << "\nlist3.clear()\n";
-	list3.clear();
+	cout << "\nSet3.clear()\n";
+	Set3.clear();
 
-	cout << "list3 size = " << list3.length() << endl;
-	if ( list3.isEmpty() )
-		cout << "list3 empty\n";
+	cout << "Set3 size = " << Set3.length() << endl;
+	if ( Set3.isEmpty() )
+		cout << "Set3 empty\n";
 	else
-		cout << "list3 not empty\n";
-		
+		cout << "Set3 not empty\n";
+
 	cout << "\nTESTING -------------------------------\n";
 	
-	List<int> list10;
-	cout << "list10 = " << list10.to_string() << endl;
+	Set<int> Set10;
+	cout << "Set10 = " << Set10.to_string() << endl;
 		
 	for ( int i = 1; i <= 20; i++ )
-		list10.append(i);
-	cout << "list10 = " << list10.to_string() << endl;
+		Set10.append(i);
+	cout << "Set10 = " << Set10.to_string() << endl;
 	
-	list10.remove(19);
-	cout << "list10 = " << list10.to_string() << endl;
+	Set10.remove(19);
+	cout << "Set10 = " << Set10.to_string() << endl;
 	
-	cout << "list10 size = " << list10.length() << endl;
+	cout << "Set10 size = " << Set10.length() << endl;
 
-	list10.insert(50,19);
-	cout << "list10 = " << list10.to_string() << endl;
-	
-*/	
+	Set10.insert(50,19);
+	cout << "Set10 = " << Set10.to_string() << endl;
 
 	return 0;
 }
