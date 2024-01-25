@@ -5,6 +5,7 @@
 // This file contains the Set class declaration.  
 //========================================================
 
+#include <cstdlib>
 #include <iostream>
 #include <string>
 using namespace std;
@@ -60,10 +61,6 @@ private:
 
 	void reallocate(void);
 };
-
-
-#include "Set.cpp"
-
 #endif
 
 
