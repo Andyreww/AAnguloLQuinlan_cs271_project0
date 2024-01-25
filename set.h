@@ -28,7 +28,7 @@ public:													// (need to create "contains", <= operator, & operator, and 
 	void insert(const T &item, int index);						// KEEP (inserts element into index)
 	void remove(int index);										// KEEP (removes element from set)
 	Set<T> operator+(const Set<T> &myset) const;							// KEEP (Adds 2 sets together) !NO DUPLICATES
-	int cardinality(void) const;									// KEEP (returns the length of the set)
+	bool cardinality(void) const;									// KEEP (returns the length of the set)
 	bool empty(void) const;										// KEEP (returns T/F if set is empty)
 	void clear(void);										// KEEP (removes all values in set)
 	bool contains(void) const;									// KEEP (returns T/F if its in set)

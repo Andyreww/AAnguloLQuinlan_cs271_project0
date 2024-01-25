@@ -9,6 +9,7 @@
 #include "set.h"
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 
 /**
  * @brief Default constructor for Set.
@@ -71,7 +72,7 @@ string Set<T>::toString(void) const{
  * @returns none.
  */
 template <class T>
-void Set<T>::append(constant T &item){
+void Set<T>::append(const T &item){
     if(size == capacity) reallocate();
     Set[size] = item;
     size++;
@@ -238,7 +239,7 @@ bool Set<T>::operator<=(const Set<T> &mySet){
 // Inserts item into list at parameter index, shifting all following items
 // by one index
 //=========================================================================
-
+/*
 template <class T> 
 void		List<T>::insert		( const T &item, int index )
 {
@@ -267,7 +268,7 @@ void		List<T>::insert		( const T &item, int index )
 	delete []list;
 	list = newptr;
 }
-
+*/
 
 //=========================================================================
 // remove
@@ -275,7 +276,7 @@ void		List<T>::insert		( const T &item, int index )
 // Returns: none, but removes item at parameter index 
 // Removes item from list at parameter index, shrinks list size by 1
 //=========================================================================
-
+/*
 template <class T> 
 void		List<T>::remove		( int index )
 {
@@ -299,7 +300,7 @@ void		List<T>::remove		( int index )
 	delete []list;
 	list = newptr;	
 }
-
+*/
 
 //=========================================================================
 // contains
@@ -308,7 +309,7 @@ void		List<T>::remove		( int index )
 //
 //=========================================================================
 
-template <class T> 
+//template <class T> 
 
 
 //=========================================================================
@@ -318,7 +319,7 @@ template <class T>
 //
 //=========================================================================
 
-template <class T> 
+//template <class T> 
 
 
 //=========================================================================
@@ -328,7 +329,7 @@ template <class T>
 //
 //=========================================================================
 
-template <class T> 
+//template <class T> 
 
 
 //=========================================================================
@@ -338,7 +339,7 @@ template <class T>
 //
 //=========================================================================
 
-template <class T> 
+//template <class T> 
 
 
 //=========================================================================
@@ -348,7 +349,7 @@ template <class T>
 //
 //=========================================================================
 
-template <class T> 
+//template <class T> 
 
 
 
