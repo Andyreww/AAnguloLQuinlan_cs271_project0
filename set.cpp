@@ -11,22 +11,48 @@
 #include <iostream>
 #include <sstream>
 
+/**
+ * @brief Constructor Class
+ *
+ * creates a Set for depending on the type 
+ *
+ * @note No parameters are required.
+ *
+ * @returns none
+ */
 template <class T> 
-		Set<T>::Set	( void )
+Set<T>::Set	( void )
 {
 	list = new T[DEFAULT_LIST_CAPACITY];
 	capacity = DEFAULT_LIST_CAPACITY;
 	size = 0;
 }
-
+/**
+ * @brief Deconstructor Class
+ *
+ * deletes the Set from existence
+ *
+ * @note No parameters are required
+ *
+ * @returns none
+ */
 template <class T> 
-		Set<T>::~Set(void)
+Set<T>::~Set(void)
 {
 	delete []list;
 }
 
+/**
+ * @brief Set -> to_string
+ *
+ * turns the Set into a rable format
+ *
+ * @note No parameters are required
+ *
+ * @returns none
+ */
 template <class T> 
-string		Set<T>::to_string	( void ) const
+string Set<T>::to_string	( void ) const
 {
     stringstream stream;
     if(size == 1) //Solves the case if Set only has 1 value
@@ -49,8 +75,17 @@ string		Set<T>::to_string	( void ) const
 	return "{" + stream.str() + "}";
 }
 
+/**
+ * @brief append
+ *
+ * adds a value into the set
+ *
+ * @param item has to be the type of the set
+ *
+ * @returns none
+ */
 template <class T> 
-void		Set<T>::append		( const T &item	)
+void Set<T>::append( const T &item	)
 {
 	if (size == capacity)
 		reallocate();
@@ -58,8 +93,17 @@ void		Set<T>::append		( const T &item	)
 	size++;
 }
 
+/**
+ * @brief reallocate
+ *
+ * increases the size of a linked list
+ *
+ * @note No parameters are required
+ *
+ * @returns none
+ */
 template <class T> 
-void		Set<T>::reallocate		( void )
+void Set<T>::reallocate( void )
 {
 	capacity = capacity * 2;
 	
@@ -73,9 +117,17 @@ void		Set<T>::reallocate		( void )
 	list = newptr;
 }
 
-
+/**
+ * @brief 
+ *
+ * 
+ *
+ * @note 
+ *
+ * @returns 
+ */
 template <class T> 
-		Set<T>::Set		( const Set<T> &mylist )
+Set<T>::Set( const Set<T> &mylist )
 {
 	size = mylist.size;
 	capacity = mylist.capacity;
@@ -85,8 +137,17 @@ template <class T>
 		list[i] = mylist.list[i];
 }
 
+/**
+ * @brief operator=
+ *
+ * 
+ *
+ * @param mylist 
+ *
+ * @returns 
+ */
 template <class T> 
-Set<T>		Set<T>::operator=	( const Set<T> &mylist )
+Set<T> Set<T>::operator=( const Set<T> &mylist )
 {
 	delete []list;
 
@@ -100,22 +161,47 @@ Set<T>		Set<T>::operator=	( const Set<T> &mylist )
 	return *this;
 }
 
-
+/**
+ * @brief isEmpty
+ *
+ * checks the size of the set and returns T/F
+ *
+ * @note No parameters are required
+ *
+ * @returns boolean
+ */
 template <class T> 
-bool		Set<T>::isEmpty		( void ) const
+bool Set<T>::isEmpty( void ) const
 {
 	return (size == 0);
 }
 
-
+/**
+ * @brief length
+ *
+ * gives us the cardinality of the set
+ *
+ * @note No parameters are required
+ *
+ * @returns int
+ */
 template <class T> 
-int			Set<T>::length		( void ) const
+int	Set<T>::length( void ) const
 {
 	return size;
 }
 
+/**
+ * @brief operator[]
+ *
+ * returns the value of the index within the set
+ *
+ * @param index integer 
+ *
+ * @returns value depending on type
+ */
 template <class T> 
-T &			Set<T>::operator[]	( int index )
+T &	Set<T>::operator[]( int index )
 {
 	if (index < 0 || index > (size - 1))
 	{
@@ -128,8 +214,17 @@ T &			Set<T>::operator[]	( int index )
 	return *retptr;
 }
 
+/**
+ * @brief clear
+ *
+ * clears everything from the set
+ *
+ * @note No parameters are required
+ *
+ * @returns none
+ */
 template <class T> 
-void		Set<T>::clear		( void )
+void Set<T>::clear( void )
 {
 	size = 0;
 	
@@ -140,8 +235,17 @@ void		Set<T>::clear		( void )
 	list = newptr;	
 }
 
+/**
+ * @brief operator+
+ *
+ * Adds 2 sets together no like terms
+ *
+ * @param mylist your second Set
+ *
+ * @returns new Set
+ */
 template <class T>
-Set<T>      Set<T>::operator+   ( const Set<T> &mylist ) const
+Set<T> Set<T>::operator+( const Set<T> &mylist ) const
 {
     Set<T> newlist;
     newlist.list = new T[capacity + mylist.capacity];
@@ -174,9 +278,18 @@ Set<T>      Set<T>::operator+   ( const Set<T> &mylist ) const
         
 }
 
-
+/**
+ * @brief insert
+ *
+ * inserts value into Set based on index
+ *
+ * @param item data type depending on set
+ * @param index integer 
+ *
+ * @returns none
+ */
 template <class T> 
-void		Set<T>::insert		( const T &item, int index )
+void Set<T>::insert( const T &item, int index )
 {
 	if (index < 0 || index > size)
 	{
@@ -204,10 +317,32 @@ void		Set<T>::insert		( const T &item, int index )
 	list = newptr;
 }
 
-
-
+/**
+ * @brief insert
+ *
+ * inserts value into Set in descending order
+ *
+ * @param item data type depending on set
+ *
+ * @returns none
+ */
 template <class T> 
-void		Set<T>::remove		( int index )
+void Set<T>::insert( const T &item)
+{
+	insert(item, 0);
+}
+
+/**
+ * @brief remove
+ *
+ * removes a value from the set
+ *
+ * @param index integer 
+ *
+ * @returns none
+ */
+template <class T> 
+void Set<T>::remove( int index )
 {
 	if (index < 0 || index > size)
 	{
@@ -230,16 +365,30 @@ void		Set<T>::remove		( int index )
 	list = newptr;	
 }
 
-
+/**
+ * @brief contains
+ *
+ * checks to see if a value is within a set
+ *
+ * @param item constant data type depending on set
+ *
+ * @returns boolean
+ */
 template <class T> 
-bool		Set<T>::contains		( const T &item ) const
-{	
+bool Set<T>::contains( const T &item ) const
+{
+	bool ret = false; 
+	
 	T* newptr;
 	newptr = new T[capacity];
-		
+	
+	//cout << newptr << endl;
+	
 	for (int i = 0; i < size+1; i++)
 	{
 		newptr[i] = list[i];
+		//cout << "IN LOOP ";
+		//cout << newptr[i] << endl
 		if (newptr[i]==item) 
 		{
 			return true; 
@@ -249,8 +398,17 @@ bool		Set<T>::contains		( const T &item ) const
 	return false;
 }
 
+/**
+ * @brief operator==
+ *
+ * checks to see if 2 sets contain the same values
+ *
+ * @param myList const Set 
+ *
+ * @returns boolean
+ */
 template <class T> 
-bool     Set<T>::operator==   ( const Set<T> &mylist ) const
+bool Set<T>::operator==( const Set<T> &mylist ) const
 {
 
     if(size != mylist.size)
@@ -277,45 +435,17 @@ bool     Set<T>::operator==   ( const Set<T> &mylist ) const
     return false;
 }
 
-
+/**
+ * @brief operator <=
+ *
+ * checks to see if a set is a subset of another set
+ *
+ * @param mylist const Set 
+ *
+ * @returns boolean
+ */
 template <class T>
-Set<T>	Set<T>::operator&		( const Set<T> &mylist ) const
-{
-	Set<T> newlist;
-	newlist.list = new T[capacity + mylist.capacity];
-	newlist.capacity = capacity + mylist.capacity;
-
-	for(int i = 0; i<size; i++)
-	{
-		if(mylist.contains(list[i]))
-		{
-			newlist.append(list[i]);
-		}
-	}
-	return newlist;
-}
-
-
-template <class T>
-Set<T>	Set<T>::operator- 	( const Set<T> &mylist ) const
-{
-	Set<T> newlist;
-	newlist.list = new T[capacity + mylist.capacity];
-	newlist.capacity = capacity + mylist.capacity;
-	
-	for(int i = 0; i<size; i++)
-	{
-		if(!mylist.contains(list[i]))
-		{
-			newlist.append(list[i]);
-		}
-	}
-	return newlist;
-}
-
-
-template <class T>
-bool     Set<T>::operator<=   ( const Set<T> &mylist ) const
+bool Set<T>::operator<=( const Set<T> &mylist ) const
 {
     int trueCounter = 0;
     if(size == 0) return false;
@@ -334,9 +464,4 @@ bool     Set<T>::operator<=   ( const Set<T> &mylist ) const
     //if(trueCounter == size) return true;
     return false;
 }
-
-
-
-
-
 
