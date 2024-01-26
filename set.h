@@ -26,16 +26,15 @@ string		to_string	( void ) const;
 void		append		( const T &item	);
 T &			operator[]	( int index );
 void		insert		( const T &item, int index );
+void		insert		( const T &item );
 void		remove		( int index );
 Set<T>		operator+	( const Set<T> &mylist ) const;
-bool     operator==  (const Set<T> &mylist ) const;
+bool     	operator==  (const Set<T> &mylist ) const;
 int			length		( void ) const;
 bool		isEmpty		( void ) const;
 void		clear		( void );
-bool		contains		( const T &item	) const;
-Set<T>	operator&		( const Set<T> &mylist ) const; 
-Set<T>	operator- 	( const Set<T> &mylist ) const;
-bool 	operator<= 	( const Set<T> &mylist ) const;
+bool		contains	( const T &item	) const;
+bool     	operator<=  (const Set<T> &mylist ) const;
 
 friend ostream & operator<< ( ostream &os, Set<T> &mylist )
 {
