@@ -10,6 +10,8 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <chrono>
+
 
 /**
  * @brief Constructor Class
@@ -58,21 +60,20 @@ string Set<T>::to_string	( void ) const
     if(size == 1) //Solves the case if Set only has 1 value
     {
         stream << list[0];
-        return "{" + stream.str() + "}";
+        return stream.str();
     }
     else
     {
         int i = 0;
         while(i < size-1) // copies until last index
         {
-            stream << list[i] << ", ";
+            stream << list[i] << " ";
             i++;
         }
         stream << list[size-1]; // adds last index
     } 
     
-
-	return "{" + stream.str() + "}";
+	return stream.str();
 }
 
 /**
@@ -171,22 +172,22 @@ Set<T> Set<T>::operator=( const Set<T> &mylist )
  * @returns boolean
  */
 template <class T> 
-bool Set<T>::isEmpty( void ) const
+bool Set<T>::empty( void ) const
 {
 	return (size == 0);
 }
 
 /**
- * @brief length
+ * @brief cardinality
  *
- * gives us the cardinality of the set
+ * gives us the length of the set
  *
  * @note No parameters are required
  *
  * @returns int
  */
 template <class T> 
-int	Set<T>::length( void ) const
+int	Set<T>::cardinality( void ) const
 {
 	return size;
 }
@@ -291,6 +292,7 @@ Set<T> Set<T>::operator+( const Set<T> &mylist ) const
 template <class T> 
 void Set<T>::insert( const T &item, int index )
 {
+	if(contains(item)) remove(item);
 	if (index < 0 || index > size)
 	{
 		cout << "error: index out of range\n";
@@ -315,6 +317,8 @@ void Set<T>::insert( const T &item, int index )
 	
 	delete []list;
 	list = newptr;
+
+
 }
 
 /**
@@ -330,6 +334,10 @@ template <class T>
 void Set<T>::insert( const T &item)
 {
 	insert(item, 0);
+
+
+
+	
 }
 
 /**
@@ -342,28 +350,41 @@ void Set<T>::insert( const T &item)
  * @returns none
  */
 template <class T> 
-void Set<T>::remove( int index )
+void Set<T>::remove(T value)
 {
-	if (index < 0 || index > size)
-	{
-		cout << "error: index out of range\n";
-		exit(0);
-	}
+    int index = -1;
+    for (int i = 0; i < size; i++)
+    {
+        if (list[i] == value)
+        {
+            index = i;
+            break;
+        }
+    }
 
-	size = size - 1;
-	
-	T* newptr;
-	newptr = new T[capacity];
-	
-	for (int i = 0; i < index; i++)
-		newptr[i] = list[i];
+    if (index == -1)
+    {
+        cout << "ERROR: value not found in the set" << endl;
+        return;
+    }
 
-	for (int i = (index); i < (size); i++)
-		newptr[i] = list[i + 1];
-	
-	delete []list;
-	list = newptr;	
+    size = size - 1;
+
+    T* newptr;
+    newptr = new T[capacity];
+
+    for (int i = 0; i < index; i++)
+        newptr[i] = list[i];
+
+    for (int i = (index); i < (size); i++)
+        newptr[i] = list[i + 1];
+
+    delete []list;
+    list = newptr;
 }
+
+
+
 
 /**
  * @brief contains
@@ -463,5 +484,40 @@ bool Set<T>::operator<=( const Set<T> &mylist ) const
     cout << "Size: " << size << endl;
     //if(trueCounter == size) return true;
     return false;
+}
+
+template <class T>
+Set<T>	Set<T>::operator&( const Set<T> &mylist ) const
+{
+	Set<T> newlist;
+	newlist.list = new T[capacity + mylist.capacity];
+	newlist.capacity = capacity + mylist.capacity;
+
+	for(int i = 0; i<size; i++)
+	{
+		if(mylist.contains(list[i]))
+		{
+			newlist.append(list[i]);
+		}
+	}
+	return newlist;
+}
+
+
+template <class T>
+Set<T>	Set<T>::operator-( const Set<T> &mylist ) const
+{
+	Set<T> newlist;
+	newlist.list = new T[capacity + mylist.capacity];
+	newlist.capacity = capacity + mylist.capacity;
+
+	for(int i = 0; i<size; i++)
+	{
+		if(!mylist.contains(list[i]))
+		{
+			newlist.append(list[i]);
+		}
+	}
+	return newlist;
 }
 
