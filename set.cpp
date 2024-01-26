@@ -88,14 +88,23 @@ string Set<T>::to_string	( void ) const
  *
  * @returns none
  */
-template <class T> 
-void Set<T>::append( const T &item	)
+template <class T>
+void Set<T>::append( const T &item )
 {
-	if (size == capacity)
-		reallocate();
-	list[size] = item;
-	size++;
+    // Check if the item already exists in the list
+    for (int i = 0; i < size; i++)
+    {
+        if (list[i] == item)
+            return; // If the item is found, return without adding
+    }
+
+    // If the item is not found in the list, then add it
+    if (size == capacity)
+        reallocate();
+    list[size] = item;
+    size++;
 }
+
 
 
 /**
