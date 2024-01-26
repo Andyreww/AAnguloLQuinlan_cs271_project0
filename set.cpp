@@ -119,13 +119,15 @@ void Set<T>::reallocate( void )
 }
 
 /**
- * @brief 
+ * @brief Constructs a new set object.
  *
- * 
+ * This constructor creates a new set object by copying the contents of another set object.
  *
- * @note 
+ * @note The new set object will have the same size and capacity as the original set object.
  *
- * @returns 
+ * @param mylist The set object to be copied.
+ *
+ * @return none
  */
 template <class T> 
 Set<T>::Set( const Set<T> &mylist )
@@ -141,11 +143,11 @@ Set<T>::Set( const Set<T> &mylist )
 /**
  * @brief operator=
  *
- * 
+ * Creates new Set object, with same contents as parameter Set object
  *
- * @param mylist 
+ * @param mylist The set to be copied.
  *
- * @returns 
+ * @returns Set Object
  */
 template <class T> 
 Set<T> Set<T>::operator=( const Set<T> &mylist )
@@ -483,6 +485,15 @@ bool Set<T>::operator<=( const Set<T> &mylist ) const
     return false;
 }
 
+/**
+ * @brief operator&
+ *
+ * creates a set with like terms
+ *
+ * @param myList const Set 
+ *
+ * @returns Set Object
+ */
 template <class T>
 Set<T>	Set<T>::operator&( const Set<T> &mylist ) const
 {
@@ -500,7 +511,16 @@ Set<T>	Set<T>::operator&( const Set<T> &mylist ) const
 	return newlist;
 }
 
-
+/**
+ * @brief operator-
+ *
+ * returns a Set with value of the first set thats not in
+ * the second Set
+ *
+ * @param myList const Set 
+ *
+ * @returns boolean
+ */
 template <class T>
 Set<T>	Set<T>::operator-( const Set<T> &mylist ) const
 {
