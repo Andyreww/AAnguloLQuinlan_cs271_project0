@@ -29,6 +29,8 @@ Set<T>::Set	( void )
 	capacity = DEFAULT_LIST_CAPACITY;
 	size = 0;
 }
+
+
 /**
  * @brief Deconstructor Class
  *
@@ -43,6 +45,7 @@ Set<T>::~Set(void)
 {
 	delete []list;
 }
+
 
 /**
  * @brief Set -> to_string
@@ -71,10 +74,10 @@ string Set<T>::to_string	( void ) const
             i++;
         }
         stream << list[size-1]; // adds last index
-    } 
-    
+    }  
 	return stream.str();
 }
+
 
 /**
  * @brief append
@@ -93,6 +96,7 @@ void Set<T>::append( const T &item	)
 	list[size] = item;
 	size++;
 }
+
 
 /**
  * @brief reallocate
@@ -118,6 +122,7 @@ void Set<T>::reallocate( void )
 	list = newptr;
 }
 
+
 /**
  * @brief Constructs a new set object.
  *
@@ -139,6 +144,7 @@ Set<T>::Set( const Set<T> &mylist )
 	for (int i = 0; i < size; i++)
 		list[i] = mylist.list[i];
 }
+
 
 /**
  * @brief operator=
@@ -164,6 +170,7 @@ Set<T> Set<T>::operator=( const Set<T> &mylist )
 	return *this;
 }
 
+
 /**
  * @brief isEmpty
  *
@@ -179,6 +186,7 @@ bool Set<T>::empty( void ) const
 	return (size == 0);
 }
 
+
 /**
  * @brief cardinality
  *
@@ -193,6 +201,7 @@ int	Set<T>::cardinality( void ) const
 {
 	return size;
 }
+
 
 /**
  * @brief operator[]
@@ -217,6 +226,7 @@ T &	Set<T>::operator[]( int index )
 	return *retptr;
 }
 
+
 /**
  * @brief clear
  *
@@ -237,6 +247,7 @@ void Set<T>::clear( void )
 	delete []list;
 	list = newptr;	
 }
+
 
 /**
  * @brief operator+
@@ -277,9 +288,9 @@ Set<T> Set<T>::operator+( const Set<T> &mylist ) const
             newlist.size++;
         }
     }
-    return newlist;
-        
+    return newlist;     
 }
+
 
 /**
  * @brief insert
@@ -319,9 +330,8 @@ void Set<T>::insert( const T &item, int index )
 	
 	delete []list;
 	list = newptr;
-
-
 }
+
 
 /**
  * @brief insert
@@ -335,12 +345,9 @@ void Set<T>::insert( const T &item, int index )
 template <class T> 
 void Set<T>::insert( const T &item)
 {
-	insert(item, 0);
-
-
-
-	
+	insert(item, 0);	
 }
+
 
 /**
  * @brief remove
@@ -386,8 +393,6 @@ void Set<T>::remove(T value)
 }
 
 
-
-
 /**
  * @brief contains
  *
@@ -417,9 +422,9 @@ bool Set<T>::contains( const T &item ) const
 			return true; 
 		}
 	}
-
 	return false;
 }
+
 
 /**
  * @brief operator==
@@ -433,7 +438,6 @@ bool Set<T>::contains( const T &item ) const
 template <class T> 
 bool Set<T>::operator==( const Set<T> &mylist ) const
 {
-
     if(size != mylist.size)
     {
         return false;
@@ -452,11 +456,10 @@ bool Set<T>::operator==( const Set<T> &mylist ) const
                 return true;
             }
         }
-    
     }
-    
     return false;
 }
+
 
 /**
  * @brief operator <=
@@ -485,6 +488,7 @@ bool Set<T>::operator<=( const Set<T> &mylist ) const
     return false;
 }
 
+
 /**
  * @brief operator&
  *
@@ -510,6 +514,7 @@ Set<T>	Set<T>::operator&( const Set<T> &mylist ) const
 	}
 	return newlist;
 }
+
 
 /**
  * @brief operator-

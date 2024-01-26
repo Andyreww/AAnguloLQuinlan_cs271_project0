@@ -18,25 +18,25 @@ template <class T>
 class Set
 {
 public:
-			Set		( void );
-			Set		( const Set<T> &mylist );
-		   ~Set		( void );
-Set<T>		operator=	( const Set<T> &mylist );
-string		to_string	( void ) const;	
-void		append		( const T &item	);
-T &			operator[]	( int index );
-void		insert		( const T &item, int index );
-void		insert		( const T &item );
-void		remove		( const T value );
-Set<T>		operator+	( const Set<T> &mylist ) const;
-bool     	operator==  (const Set<T> &mylist ) const;
-int			cardinality		( void ) const;
-bool		empty		( void ) const;
-void		clear		( void );
-bool		contains	( const T &item	) const;
-bool     	operator<=  (const Set<T> &mylist ) const;
-Set<T>	operator&		( const Set<T> &mylist ) const; 
-Set<T>	operator- 	( const Set<T> &mylist ) const;
+			Set			( void );
+			Set			( const Set<T> &mylist );
+			~Set			( void );
+	Set<T>	operator=		( const Set<T> &mylist );
+	string	to_string		( void ) const;	
+	void		append		( const T &item );
+	T &		operator[]	( int index );
+	void		insert		( const T &item, int index );
+	void		insert		( const T &item );
+	void		remove		( const T value );
+	Set<T>	operator+		( const Set<T> &mylist ) const;
+	bool     	operator==  	( const Set<T> &mylist ) const;
+	int		cardinality	( void ) const;
+	bool		empty		( void ) const;
+	void		clear		( void );
+	bool		contains		( const T &item ) const;
+	bool     	operator<=  	( const Set<T> &mylist ) const;
+	Set<T>	operator&		( const Set<T> &mylist ) const; 
+	Set<T>	operator- 	( const Set<T> &mylist ) const;
 
 friend ostream & operator<< ( ostream &os, Set<T> &mylist )
 {
@@ -46,11 +46,11 @@ friend ostream & operator<< ( ostream &os, Set<T> &mylist )
 }
 
 private:
-	T	*list;			// the pointer for the dynamic array
-	int capacity;		// the size of the array
-	int size;			// the number of items in the list
+	T		*list;			// the pointer for the dynamic array
+	int 		capacity;			// the size of the array
+	int 		size;			// the number of items in the list
 
-	void	reallocate	( void );
+	void		reallocate	( void );
 };
 
 #include "set.cpp"
