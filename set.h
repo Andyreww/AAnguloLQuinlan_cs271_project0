@@ -27,14 +27,16 @@ void		append		( const T &item	);
 T &			operator[]	( int index );
 void		insert		( const T &item, int index );
 void		insert		( const T &item );
-void		remove		( int index );
+void		remove		( const T value );
 Set<T>		operator+	( const Set<T> &mylist ) const;
 bool     	operator==  (const Set<T> &mylist ) const;
-int			length		( void ) const;
-bool		isEmpty		( void ) const;
+int			cardinality		( void ) const;
+bool		empty		( void ) const;
 void		clear		( void );
 bool		contains	( const T &item	) const;
 bool     	operator<=  (const Set<T> &mylist ) const;
+Set<T>	operator&		( const Set<T> &mylist ) const; 
+Set<T>	operator- 	( const Set<T> &mylist ) const;
 
 friend ostream & operator<< ( ostream &os, Set<T> &mylist )
 {
