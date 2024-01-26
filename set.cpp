@@ -480,9 +480,6 @@ bool Set<T>::operator<=( const Set<T> &mylist ) const
         
     }
     if(trueCounter == size) return true;
-    cout << "trueCounter: " << trueCounter << endl;
-    cout << "Size: " << size << endl;
-    //if(trueCounter == size) return true;
     return false;
 }
 
